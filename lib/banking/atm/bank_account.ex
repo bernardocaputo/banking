@@ -44,4 +44,10 @@ defmodule Banking.ATM.BankAccount do
     bank_account
     |> change(%{balance: bank_account.balance + deposit_amount})
   end
+
+  def withdrawal_changeset(bank_account, withdrawal_amount) do
+    bank_account
+    |> change(%{balance: bank_account.balance - withdrawal_amount})
+    |> validate_number(:balance, greater_than_or_equal_to: 0)
+  end
 end

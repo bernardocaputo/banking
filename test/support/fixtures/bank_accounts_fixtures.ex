@@ -3,7 +3,7 @@ defmodule Banking.BankAccountsFixtures do
   alias Banking.ATM.BankAccount
   alias Banking.Repo
 
-  defp random_balance, do: Enum.random(0..100)
+  defp random_balance, do: 50
 
   def valid_bank_account_attributes(attrs \\ %{}) do
     user = AccountsFixtures.user_fixture()

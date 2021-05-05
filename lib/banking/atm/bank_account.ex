@@ -15,17 +15,33 @@ defmodule Banking.ATM.BankAccount do
     timestamps()
   end
 
-  @doc false
+  @doc """
+  Return changeset for inserting new bank account given attrs
+  """
+  @spec create_changeset(map()) :: Ecto.Changeset.t()
   def create_changeset(attrs) do
     %__MODULE__{}
     |> changeset(attrs)
   end
 
-  @doc false
-  def changeset(bank_account, attrs) do
-    bank_account
+  @doc """
+  Return changeset for inserting/updating current struct
+  """
+  @spec changeset(BankAccount.t(), map()) :: Ecto.Changeset.t()
+  def changeset(struct, attrs) do
+    struct
     |> cast(attrs, @required_attrs)
     |> validate_required(@required_attrs)
-    |> unique_constraint(:user)
+    |> validate_number(:balance, greater_than_or_equal_to: 0)
+    |> unique_constraint(:user_id)
+  end
+
+  @doc """
+  Return changeset for updating new balance after deposit
+  """
+  @spec deposit_changeset(BankAccount.t(), pos_integer()) :: Ecto.Changeset.t()
+  def deposit_changeset(bank_account, deposit_amount) do
+    bank_account
+    |> change(%{balance: bank_account.balance + deposit_amount})
   end
 end

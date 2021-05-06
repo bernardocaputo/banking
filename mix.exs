@@ -43,7 +43,9 @@ defmodule Banking.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false}
+      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
+      {:guardian, "~> 2.0"},
+      {:argon2_elixir, "~> 2.0"}
     ]
   end
 

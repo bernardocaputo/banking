@@ -27,8 +27,8 @@ defmodule Banking.Accounts do
   @doc """
   Authenticate user
   """
-  @spec authenticate_user(String.t(), String.t()) :: {:ok, User.t()} | {:error, atom()}
-  def authenticate_user(username, password) do
+  @spec authenticate_user(map()) :: {:ok, User.t()} | {:error, atom()}
+  def authenticate_user(%{"username" => username, "password" => password}) do
     username
     |> get_user_by_username()
     |> _authenticate_user(password)

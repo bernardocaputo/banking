@@ -6,9 +6,12 @@ defmodule Banking.ATM do
   @doc """
   Return balance from bank account
   """
-  @spec check_balance(integer()) :: BankAccount.t()
-  def check_balance(bank_account_id) do
-    Repo.get(BankAccount, bank_account_id)
+  @spec check_balance(integer()) :: {:ok, BankAccount.t()} | {:error, atom()}
+  def check_balance(user_id) do
+    case Repo.get_by(BankAccount, %{user_id: user_id}) do
+      nil -> {:error, :not_found}
+      bank_account -> {:ok, bank_account}
+    end
   end
 
   @doc """

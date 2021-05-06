@@ -6,7 +6,8 @@ defmodule Banking.ATM.BankAccount do
 
   @type t :: %__MODULE__{balance: non_neg_integer(), user: User.t()}
 
-  @required_attrs [:balance, :user_id]
+  @required_attrs [:user_id]
+  @optional_attrs [:balance]
 
   schema "bank_accounts" do
     field :balance, :integer
@@ -30,7 +31,7 @@ defmodule Banking.ATM.BankAccount do
   @spec changeset(BankAccount.t(), map()) :: Ecto.Changeset.t()
   def changeset(struct, attrs) do
     struct
-    |> cast(attrs, @required_attrs)
+    |> cast(attrs, @required_attrs ++ @optional_attrs)
     |> validate_required(@required_attrs)
     |> validate_number(:balance, greater_than_or_equal_to: 0)
     |> unique_constraint(:user_id)

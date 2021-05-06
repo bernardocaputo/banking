@@ -3,7 +3,7 @@ defmodule Banking.Repo.Migrations.CreateBankAccounts do
 
   def change do
     create table(:bank_accounts) do
-      add :balance, :integer
+      add :balance, :integer, default: 0
       timestamps()
     end
   end

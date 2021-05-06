@@ -10,7 +10,7 @@ defmodule Banking.ATMTest do
 
   describe "check_balance/1" do
     test "return balance", %{bank_account: bank_account} do
-      assert ATM.check_balance(bank_account.id) == bank_account
+      assert ATM.check_balance(bank_account.user_id) == {:ok, bank_account}
     end
   end
 

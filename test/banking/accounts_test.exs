@@ -45,11 +45,11 @@ defmodule Banking.AccountsTest do
   describe "authenticate_user" do
     test "return user" do
       assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs)
-      Accounts.authenticate_user(user.username, user.password)
+      Accounts.authenticate_user(%{"username" => user.username, "password" => user.password})
     end
 
     test "return  error" do
-      assert Accounts.authenticate_user("non_existing", "123456") ==
+      assert Accounts.authenticate_user(%{"username" => "non_existing", "password" => "123456"}) ==
                {:error, :invalid_credentials}
     end
   end

@@ -73,3 +73,7 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :banking, Banking.Accounts.Guardian,
+  issuer: "banking",
+  secret_key: "099wK5y3lGSbrmNDny52/hlRVCcQQbdgFLP0vilufrowpw21FuTHIcpunTCbj18l"

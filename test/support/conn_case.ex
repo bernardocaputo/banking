@@ -16,6 +16,7 @@ defmodule BankingWeb.ConnCase do
   """
 
   use ExUnit.CaseTemplate
+  import Plug.Conn, only: [put_req_header: 3]
 
   using do
     quote do
@@ -39,5 +40,16 @@ defmodule BankingWeb.ConnCase do
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}
+  end
+
+  @spec authenticate(Plug.Conn.t(), String.t()) :: Plug.Conn.t()
+  def authenticate(conn, user) do
+    {:ok, jwt, _claims} = Guardian.encode_and_sign(Banking.Accounts.Guardian, user)
+
+    put_req_header(
+      conn,
+      "authorization",
+      "bearer #{jwt}"
+    )
   end
 end

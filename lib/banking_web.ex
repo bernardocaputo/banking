@@ -23,6 +23,8 @@ defmodule BankingWeb do
 
       import Plug.Conn
       alias BankingWeb.Router.Helpers, as: Routes
+
+      action_fallback(BankingWeb.FallbackController)
     end
   end
 

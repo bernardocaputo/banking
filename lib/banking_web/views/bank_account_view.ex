@@ -1,4 +1,6 @@
 defmodule BankingWeb.BankAccountView do
+  @moduledoc false
+
   use BankingWeb, :view
 
   def render("show.json", %{bank_account: bank_account}) do

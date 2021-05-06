@@ -4,12 +4,32 @@ defmodule BankingWeb.ATMController do
   alias Banking.Accounts.User
   alias BankingWeb.BankAccountView
 
-  def check_balance(conn, _params) do
+  def show_bank_account(conn, _params) do
     with {:ok, user = %User{}} <- get_current_user(conn),
-         {:ok, bank_account} <- ATM.check_balance(user.id) do
+         {:ok, bank_account} <- ATM.show_bank_account(user.id) do
       conn
       |> put_view(BankAccountView)
       |> render("show.json", bank_account: bank_account)
+    end
+  end
+
+  def deposit_to(conn, %{"deposit_amount" => deposit_amount}) do
+    with {:ok, user = %User{}} <- get_current_user(conn),
+         {:ok, bank_account} <- ATM.show_bank_account(user.id),
+         {:ok, bank_account_updated} <- ATM.deposit_to(bank_account, deposit_amount) do
+      conn
+      |> put_view(BankAccountView)
+      |> render("show.json", bank_account: bank_account_updated)
+    end
+  end
+
+  def withdrawal_from(conn, %{"withdrawal_amount" => withdrawal_amount}) do
+    with {:ok, user = %User{}} <- get_current_user(conn),
+         {:ok, bank_account} <- ATM.show_bank_account(user.id),
+         {:ok, bank_account_updated} <- ATM.withdrawal_from(bank_account, withdrawal_amount) do
+      conn
+      |> put_view(BankAccountView)
+      |> render("show.json", bank_account: bank_account_updated)
     end
   end
 

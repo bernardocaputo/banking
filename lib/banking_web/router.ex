@@ -22,11 +22,8 @@ defmodule BankingWeb.Router do
   scope "/", BankingWeb do
     pipe_through [:api, :auth, :ensure_authed_access]
 
-    get "/check_balance", ATMController, :check_balance
+    get "/show_bank_account", ATMController, :show_bank_account
+    post "/deposit_to", ATMController, :deposit_to
+    post "/withdrawal_from", ATMController, :withdrawal_from
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", BankingWeb do
-  #   pipe_through :api
-  # end
 end

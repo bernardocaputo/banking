@@ -10,8 +10,8 @@ defmodule Banking.ATM.BankAccount do
   @optional_attrs [:balance]
 
   schema "bank_accounts" do
-    field :balance, :integer
-    belongs_to :user, User
+    field(:balance, :integer)
+    belongs_to(:user, User)
 
     timestamps()
   end
@@ -23,6 +23,7 @@ defmodule Banking.ATM.BankAccount do
   def create_changeset(attrs) do
     %__MODULE__{}
     |> changeset(attrs)
+    |> put_change(:balance, 50)
   end
 
   @doc """
@@ -33,7 +34,6 @@ defmodule Banking.ATM.BankAccount do
     struct
     |> cast(attrs, @required_attrs ++ @optional_attrs)
     |> validate_required(@required_attrs)
-    |> validate_number(:balance, greater_than_or_equal_to: 0)
     |> unique_constraint(:user_id)
   end
 

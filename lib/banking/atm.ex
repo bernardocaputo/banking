@@ -1,7 +1,18 @@
 defmodule Banking.ATM do
+  alias Banking.Accounts.User
   alias Banking.ATM.BankAccount
   alias Banking.Repo
   alias Ecto.Multi
+
+  @doc """
+  Create Bank Account
+  """
+  @spec create_bank_account(User.t()) :: {:ok, BankAccount.t()} | {:error, Ecto.Changeset.t()}
+  def create_bank_account(user) do
+    %{user_id: user.id}
+    |> BankAccount.create_changeset()
+    |> Repo.insert()
+  end
 
   @doc """
   Return balance from bank account

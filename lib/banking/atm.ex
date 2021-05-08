@@ -1,4 +1,8 @@
 defmodule Banking.ATM do
+  @moduledoc """
+  This module handle the ATM machine context where you can check
+   your balance, deposit or withdrawal from your bank account
+  """
   alias Banking.Accounts.User
   alias Banking.ATM.BankAccount
   alias Banking.Repo

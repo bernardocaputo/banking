@@ -1,4 +1,7 @@
 defmodule Banking.ATM.BankAccount do
+  @moduledoc """
+  Module that handle bank account changeset and schema
+  """
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -7,7 +10,7 @@ defmodule Banking.ATM.BankAccount do
   @type t :: %__MODULE__{balance: non_neg_integer(), user: User.t()}
 
   @required_attrs [:user_id]
-  @optional_attrs [:balance]
+  # @optional_attrs [:balance]
 
   schema "bank_accounts" do
     field(:balance, :integer)
@@ -29,10 +32,10 @@ defmodule Banking.ATM.BankAccount do
   @doc """
   Return changeset for inserting/updating current struct
   """
-  @spec changeset(BankAccount.t(), map()) :: Ecto.Changeset.t()
+  @spec changeset(__MODULE__.t(), map()) :: Ecto.Changeset.t()
   def changeset(struct, attrs) do
     struct
-    |> cast(attrs, @required_attrs ++ @optional_attrs)
+    |> cast(attrs, @required_attrs)
     |> validate_required(@required_attrs)
     |> unique_constraint(:user_id)
   end
@@ -40,7 +43,7 @@ defmodule Banking.ATM.BankAccount do
   @doc """
   Return changeset for updating new balance after deposit
   """
-  @spec deposit_changeset(BankAccount.t(), pos_integer()) :: Ecto.Changeset.t()
+  @spec deposit_changeset(__MODULE__.t(), pos_integer()) :: Ecto.Changeset.t()
   def deposit_changeset(bank_account, deposit_amount) do
     bank_account
     |> change(%{balance: bank_account.balance + deposit_amount})

@@ -1,4 +1,8 @@
 defmodule Banking.Accounts do
+  @moduledoc """
+  This module functions related to User Account
+  """
+
   alias Banking.Accounts.User
   alias Banking.Repo
 
@@ -15,7 +19,7 @@ defmodule Banking.Accounts do
   @doc """
   Get user or raise error
   """
-  @spec get_user!(Integer.t()) :: User.t() | no_return()
+  @spec get_user!(integer()) :: User.t() | nil
   def get_user!(id), do: Repo.get!(User, id)
 
   @doc """

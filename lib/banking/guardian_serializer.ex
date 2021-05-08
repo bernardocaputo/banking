@@ -1,8 +1,10 @@
 defmodule Banking.GuardianSerializer do
-  alias Banking.Repo
-  alias Banking.Accounts.User
+  @moduledoc false
 
-  def for_token(user = %User{}), do: {:ok, "User:#{user.id}"}
+  alias Banking.Accounts.User
+  alias Banking.Repo
+
+  def for_token(%User{} = user), do: {:ok, "User:#{user.id}"}
   def for_token(_), do: {:error, "Unknown resource type"}
 
   def from_token("User:" <> id), do: {:ok, Repo.get(User, id)}

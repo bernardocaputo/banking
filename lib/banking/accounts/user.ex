@@ -1,4 +1,8 @@
 defmodule Banking.Accounts.User do
+  @moduledoc """
+  This module contain Users changeset and schema
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
   alias Banking.ATM.BankAccount
@@ -6,10 +10,10 @@ defmodule Banking.Accounts.User do
   @type t :: %__MODULE__{username: String.t(), password_hash: String.t()}
 
   schema "users" do
-    field :username, :string
-    field :password, :string, virtual: true
-    field :password_hash, :string
-    has_one :bank_account, BankAccount
+    field(:username, :string)
+    field(:password, :string, virtual: true)
+    field(:password_hash, :string)
+    has_one(:bank_account, BankAccount)
 
     timestamps()
   end

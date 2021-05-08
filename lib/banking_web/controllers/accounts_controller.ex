@@ -1,4 +1,9 @@
 defmodule BankingWeb.AccountsController do
+  @moduledoc """
+  The Accounts Controller handle all communication
+  regarding authentication and account coming from a client
+  """
+
   use BankingWeb, :controller
   alias Banking.Accounts
   alias Banking.ATM

@@ -1,4 +1,8 @@
 defmodule Banking.Accounts.ErrorHandler do
+  @moduledoc """
+  Error handler when user is not authenticted
+  """
+
   import Plug.Conn
 
   @behaviour Guardian.Plug.ErrorHandler

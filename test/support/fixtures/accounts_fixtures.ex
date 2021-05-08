@@ -1,4 +1,6 @@
 defmodule Banking.AccountsFixtures do
+  @moduledoc false
+
   alias Banking.Accounts.User
   alias Banking.Repo
 

@@ -1,0 +1,21 @@
+{
+    "skip_files": [
+        "lib/banking.ex",
+        "lib/banking/accounts/error_handler.ex",
+        "lib/banking/accounts/pipeline.ex",
+        "lib/banking/application.ex",
+        "lib/banking/guardian_serializer.ex",
+        "lib/banking/repo.ex",
+        "lib/banking_web.ex",
+        "lib/scripts/*",
+        "lib/banking_web/endpoint.ex",
+        "lib/banking_web/views/error_helpers.ex",
+        "lib/banking_web/views/layout_view.ex",
+        "lib/banking_web/views/page_view.ex",
+        "test/support/channel_case.ex"
+    ],
+    "coverage_options": {
+        "treat_no_relevant_lines_as_covered": true,
+        "minimum_coverage": 100.0
+    }
+}

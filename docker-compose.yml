@@ -16,7 +16,4 @@ services:
       - db
     ports:
       - '4000:4000'
-    volumes:
-      - /Users/bernardocaputo/Workspace/banking:/app
-volumes:
   pgdata:

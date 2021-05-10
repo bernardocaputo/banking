@@ -7,6 +7,8 @@ defmodule BankingWeb.FallbackController do
 
   use BankingWeb, :controller
 
+  require Logger
+
   def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
     conn
     |> put_status(:unprocessable_entity)
@@ -22,5 +24,11 @@ defmodule BankingWeb.FallbackController do
         message: error_msg |> Atom.to_string() |> String.replace("_", " ") |> String.capitalize()
       }
     })
+  end
+
+  def call(conn, err) do
+    conn
+    |> put_status(:bad_request)
+    |> json(%{errors: %{message: inspect(err)}})
   end
 end

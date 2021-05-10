@@ -36,6 +36,11 @@ docker-compose run --rm web mix ecto.migrate
 docker-compose up
 ```
 
+  - to run tests:
+```
+docker-compose run --rm web mix test                                                 
+```
+
   - First you need to create a bank account by calling the endpoint below:
 ```
 POST http://localhost:4000/sign_up
